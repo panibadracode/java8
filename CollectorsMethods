@@ -29,3 +29,9 @@ List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
         System.out.println("Sum of elements (reducing with identity): " + sumWithIdentity);
 
 
+        // Partition words into two groups: even-length and odd-length
+     Map<Integer, List<String>> groupingBy =  words.stream()
+     .collect( Collectors.groupingBy(String :: length));
+        System.out.println("Partitioned Map: " + groupingBy);
+        
+
