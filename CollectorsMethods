@@ -1,0 +1,7 @@
+List<String> words = Arrays.asList("apple", "banana", "orange", "kiwi");
+ 
+        // Collect elements into a LinkedList
+        LinkedList<String> collectedLinkedList = words.stream()
+                                                      .collect(Collectors.toCollection(LinkedList::new));
+        System.out.println("Collected LinkedList: " + collectedLinkedList);
+
