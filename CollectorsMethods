@@ -12,3 +12,20 @@ List<String> words = Arrays.asList("apple", "banana", "orange", "kiwi");
      Map<Boolean, List<String>> partitionedMap =  words.stream()
      .collect( Collectors.partitioningBy(  w -> w.length()%2==0 ));
 
+        // Count the number of elements in the stream
+        long count = words.stream()
+                          .collect(Collectors.counting());
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+ 
+        // Reduce elements to calculate the sum using reducing(BinaryOperator<T> op)
+        Optional<Integer> sumOptional = numbers.stream()
+                                                .collect(Collectors.reducing((a, b) -> a + b));
+        System.out.println("Sum of elements (reducing(BinaryOperator)): " + sumOptional.orElse(0));
+ 
+        // Reduce elements to calculate the sum starting from an initial value using reducing(T identity, BinaryOperator<T> op)
+        Integer sumWithIdentity = numbers.stream()
+                                         .collect(Collectors.reducing(0, (a, b) -> a + b));
+        System.out.println("Sum of elements (reducing with identity): " + sumWithIdentity);
+
+
