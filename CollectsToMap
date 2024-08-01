@@ -4,8 +4,8 @@
 import java.util.stream.Collectors;
 import java.util.*;
 import java.util.Arrays;
-class HelloWorld {
-    public static void CollectsToMap(String[] args) {
+class CollectsToMap {
+    public static void main(String[] args) {
         System.out.println("Try programiz.pro");
            List<String> words = Arrays.asList("applew", "bananawww", "orange", "wi");
         // Group words by their first character
