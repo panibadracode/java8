@@ -5,3 +5,10 @@ List<String> words = Arrays.asList("apple", "banana", "orange", "kiwi");
                                                       .collect(Collectors.toCollection(LinkedList::new));
         System.out.println("Collected LinkedList: " + collectedLinkedList);
 
+
+ List<String> words = Arrays.asList("apple", "banana", "orange", "kiwi");
+ 
+        // Partition words into two groups: even-length and odd-length
+     Map<Boolean, List<String>> partitionedMap =  words.stream()
+     .collect( Collectors.partitioningBy(  w -> w.length()%2==0 ));
+
