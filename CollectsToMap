@@ -1,0 +1,17 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+import java.util.stream.Collectors;
+import java.util.*;
+import java.util.Arrays;
+class HelloWorld {
+    public static void CollectsToMap(String[] args) {
+        System.out.println("Try programiz.pro");
+           List<String> words = Arrays.asList("applew", "bananawww", "orange", "wi");
+        // Group words by their first character
+        Map<String,Integer> groupedByFirstChar = words.stream()
+        .collect(Collectors.toMap(w->w, String :: length));
+        // Value mapper
+        System.out.println("Grouped Map: " + groupedByFirstChar);
+    }
+    }
