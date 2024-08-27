@@ -1,0 +1,158 @@
+package org.example.java8;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class BasicCodingQuestions {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(10, 15, 8, 49, 25, 98, 32);
+        List<Integer> list1 = Arrays.asList(10, 17, 87, 47, 25, 97, 32);
+        list.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst().ifPresent(System.out::println);
+        list.stream().filter(list1::contains).forEach(System.out::println);
+        List<Integer> evenNumbers = list.stream().filter(e -> e % 2 == 0).collect(Collectors.toList());
+        System.out.println(evenNumbers);
+        List<String> numberswith1 = list.stream().map(n -> n + "").filter(s -> s.startsWith("1")).collect(Collectors.toList());
+        Set<Integer> set = list.stream().collect(Collectors.toSet());
+        list.stream().distinct().forEach(System.out::println);
+        Optional<Integer> firstNumber = list.stream().findFirst();
+        list.stream().findFirst().ifPresent(System.out::println);
+        long count = list.stream().count();
+        Optional<Integer> max = list.stream().min(Integer::compare);
+        int maximum = list.stream().max(Integer::compare).get();
+        //Unique characters
+        Arrays.stream("acddeebff".split(""))
+                .collect(Collectors.groupingBy(Function.identity(), HashMap::new, Collectors.counting()))
+                .entrySet().stream().filter(entry -> entry.getValue() == 1).map(e -> e.getKey()).forEach(System.out::println);
+        // First Non repeated character
+        System.out.println("");
+        Arrays.stream("acddeebff".split("")).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+                .entrySet().stream().filter(e -> e.getValue() == 1).findFirst().ifPresent(System.out::println);
+// First repeated character
+        System.out.println("");
+        Arrays.stream("java articles are awesome".split("")).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+                .entrySet().stream().filter(e -> e.getValue() > 1).map(entry -> entry.getKey()).findFirst().ifPresent(System.out::println);
+        // sort list
+        System.out.println("");
+        List<Integer> sortedList = list.stream().sorted().toList(); // list.stream().sorted(Integer::compare).collect(Collectors.toList());
+        System.out.println(sortedList);
+        System.out.println("");
+        list.stream().sorted(Collections.reverseOrder()).forEach(System.out::println);
+
+        HashSet<Integer> sett = new HashSet<>();
+        boolean b = list.stream().anyMatch(e -> !set.add(e));
+
+        System.out.println(LocalDate.now());
+        System.out.println(LocalTime.now());
+        System.out.println(LocalDateTime.now());
+
+        List<String> names = Arrays.asList("AA", "BB", "AA", "CC");
+
+        names.stream().collect(Collectors.groupingBy(Function.identity(), HashMap::new, Collectors.counting())).entrySet().stream().forEach(e -> System.out.println(e.getKey() + ":" + e.getValue()));
+        names.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream().forEach(e -> System.out.println(e.getKey() + ":" + e.getValue()));
+
+        int n = 138;
+
+        long sum = Arrays.stream(String.valueOf(n).split("")).collect(Collectors.summingInt(e -> Integer.parseInt(e)));
+        System.out.println(sum);
+
+
+        HashMap<Integer, Employee> map = new HashMap<>();
+
+
+             map.put(   1, new Employee(1, "Narasa", new Address("Nellore", 524234)));
+
+        map.put(2, new Employee(2, "Narasa", new Address("Nellore", 500050)));
+
+        map.put(3, new Employee(3, "Narasa", new Address("Nellore", 500001)));
+
+        map.put(4, new Employee(4, "Narasa", new Address("Nellore", 521098)));
+
+List<Employee> sortedEmployeeList = map.entrySet().stream().sorted(Comparator.comparing(e->e.getValue().getAddress().getPincode())).map(Map.Entry::getValue).toList();
+System.out.println(sortedEmployeeList);
+
+        }
+
+    }
+
+class Employee{
+    public int getId() {
+        return id;
+    }
+
+    public Employee(int id, String name, Address address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address=" + address +
+                '}';
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    private int id;
+    private String name;
+    private Address address;
+}
+class Address{
+    private String city;
+
+    public String getCity() {
+        return city;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "city='" + city + '\'' +
+                ", pincode=" + pincode +
+                '}';
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public long getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(long pincode) {
+        this.pincode = pincode;
+    }
+
+    public Address(String city, long pincode) {
+        this.city = city;
+        this.pincode = pincode;
+    }
+
+    private long pincode;
+}
