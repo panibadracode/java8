@@ -1,0 +1,23 @@
+package org.example.java8;
+/*
+We can pass objects to a function.
+We can create objects within function.
+We can return objects from a function.
+We can pass a function to a function.
+We can create a function within function.
+We can return a function from a function.*/
+
+public class FunctionalProgramming {
+    public static void main(String[] args) {
+        Cal cal = (c, d) -> c / d;
+        int result1 = doSomething(5, 2, cal);
+        int result = doSomething(5, 2, (i, j) -> i / j);
+        System.out.println(result);
+    }
+    public static int doSomething(int a, int b, Cal cal) {
+        return cal.div(a, b);
+    }
+}
+interface Cal {
+    public int div(int a, int b);
+}
